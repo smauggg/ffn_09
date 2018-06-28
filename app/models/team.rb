@@ -11,8 +11,10 @@ class Team < ApplicationRecord
   scope :alphabet, ->{order name: :asc}
   scope :load_team_from_ids, ->(ids){where "id IN (?)", ids}
   scope :search_by_name, ->(name){where "name LIKE CONCAT('%',?,'%')", name}
+  scope :search_by_continent, ->(id){where continent_id: id}
   scope :not_include, ->(teams){Team.all - teams}
   scope :owned_by, ->(league_id){where league_id: league_id}
+  scope :owner_country, ->(country_id){where country_id: country_id}
   mount_uploader :picture, PictureUploader
   mount_uploader :logo, LogoUploader
 end

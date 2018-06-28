@@ -59,7 +59,7 @@ class MatchesController < ApplicationController
   end
 
   def load_all_filter
-    @league_list = League.alphabet.map{|t| [t.name, t.id]}
+    @league_list = League.alphabet.pluck :name, :id
     @status = [Settings.done_pair_value.split(/\W+/), Settings.undone_pair_value.split(/\W+/)]
   end
 

@@ -7,6 +7,6 @@ module ApplicationHelper
 
   # Return the col-xx-x for views
   def css_col_for_partial counter
-    counter == 0 ? 8 : 4
+    counter.zero? ? 8 : 4
   end
 end

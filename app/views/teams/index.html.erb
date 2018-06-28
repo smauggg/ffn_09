@@ -1,3 +1,4 @@
+<%= javascript_include_tag "myFunction" %>
 <% provide :title, t(".title") %>
 
 <% if authorized_admin? current_user %>
@@ -14,31 +15,39 @@
       </div>
     </div>
   </div>
-
 <% else %>
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-body">
         <h1><%= t ".title" %></h1>
 
-        <div class="container">
-          <%= form_tag(teams_path, method: :get, id: "search-form",
-            class: "example form-horizontal pull-left") do %>
-            <%= text_field_tag :search, params[:search], placeholder: t(".search_holder"),
-              class: "searchTerm search-field" %>
-            <%= button_tag(type: :submit, class: "btn btn-search btn-primary") do %>
-              <i class="fa fa-search"></i>
-            <% end %>
-          <% end %>
+        <div class="col-md-offset-4">
+          <div class="well well-custom">
+            <div class="container">
+              <%= form_tag(teams_path, method: :get, id: "search-form", remote: true,
+                class: "example form-horizontal pull-left") do %>
+                <div class="row">
+                  <%= select_tag :continent_id, options_for_select(@continent_list),
+                    prompt: t(".by_continent"), class: "col-md-6 btn btn-default", id: "continent" %>
+                  <div class="section-country">
+                    <%= render "country" %>
+                  </div>
+                </div>
+                <%= text_field_tag :search, params[:search], placeholder: t(".search_holder"),
+                  class: "searchTerm search-field" %>
+                <%= button_tag(type: :submit, class: "btn btn-search btn-primary") do %>
+                  <i class="fa fa-search"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
         </div>
-
         <div class="well">
-        <ul class="users">
-          <%= render @teams %>
-        </ul>
-        <%= will_paginate %>
-      </div>
-
+          <ul class="users">
+            <%= render @teams %>
+          </ul>
+          <%= will_paginate %>
+        </div>
       </div>
     </div>
   </div>
