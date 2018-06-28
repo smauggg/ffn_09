@@ -1,9 +1,9 @@
 class MatchesController < ApplicationController
-  before_action :admin_user, except: %i(index show)
   before_action :load_match, only: %i(show destroy)
   before_action :load_all_filter, only: %i(index load_league_matches)
   before_action :load_all_matches, :load_filtered_result, only: :index
   before_action :load_league, :load_league_teams, only: :new
+  load_and_authorize_resource
 
   def show
     store_location
@@ -17,12 +17,9 @@ class MatchesController < ApplicationController
       .paginate page: params[:page], per_page: Settings.per_page
   end
 
-  def new
-    @match = Match.new
-  end
+  def new; end
 
   def create
-    @match = Match.new match_params
     if @match.save
       flash[:success] = t ".flash_created_match"
       redirect_to league_all_matches_path @match.league

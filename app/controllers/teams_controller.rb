@@ -1,8 +1,8 @@
 class TeamsController < ApplicationController
   before_action :load_team, except: %i(index new create remove_player)
-  before_action :admin_user, except: %i(show index)
   before_action :load_remove_player, :load_current_team, only: :remove_player
   before_action :load_teams_continents_countries_collections, only: :index
+  load_and_authorize_resource
 
   def index
     load_countries_by_continent if params[:continent_id]
@@ -27,12 +27,9 @@ class TeamsController < ApplicationController
     end
   end
 
-  def new
-    @team = Team.new
-  end
+  def new; end
 
   def create
-    @team = Team.new team_params
     if @team.save
       flash[:success] = t ".flash_created_team"
       redirect_to @team

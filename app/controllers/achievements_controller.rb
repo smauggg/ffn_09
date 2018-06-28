@@ -1,19 +1,16 @@
 class AchievementsController < ApplicationController
   before_action :load_all_teams, except: :index
   before_action :load_achievement, only: :destroy
-  before_action :admin_user, except: :index
+  load_and_authorize_resource
 
   def index
     @achievements = Achievement.latest.paginate page: params[:page],
       per_page: Settings.per_page
   end
 
-  def new
-    @achievement = Achievement.new
-  end
+  def new; end
 
   def create
-    @achievement = Achievement.new achievement_params
     if @achievement.save
       flash[:success] = t ".flash_created_achievement"
       redirect_to achievements_path

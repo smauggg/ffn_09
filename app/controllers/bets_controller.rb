@@ -2,6 +2,8 @@ class BetsController < ApplicationController
   before_action :load_match, only: %i(create update)
   before_action :load_var_for_create, only: :create
   before_action :load_var_for_update, only: :update
+  load_and_authorize_resource
+
   def index; end
 
   def create
