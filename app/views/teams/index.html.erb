@@ -1,7 +1,7 @@
 <%= javascript_include_tag "myFunction" %>
 <% provide :title, t(".title") %>
 
-<% if authorized_admin? current_user %>
+<% if can? :manage, Team %>
   <%= render "admincp/sidebar" %>
   <div class="container">
     <div class="row">

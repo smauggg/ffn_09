@@ -1,4 +1,4 @@
-<% if authorized_admin? current_user %>
+<% if can? :manage, league %>
   <li>
     <%= image_tag league.logo.url, class: "team-logo-index" if league.logo? %>
     <%= link_to league.name, league_path(league) %>

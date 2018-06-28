@@ -100,7 +100,7 @@ class TeamsController < ApplicationController
   end
 
   def load_teams_continents_countries_collections
-    @teams = Team.all.paginate page: params[:page], per_page: Settings.per_page
+    @teams = Team.alphabet.paginate page: params[:page], per_page: Settings.per_page
     @continent_list = Continent.alphabet.pluck :name, :id
     @country_list = Country.alphabet.pluck :name, :id
   end

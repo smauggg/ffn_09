@@ -41,8 +41,14 @@ en:
   flash_deleted_user: "User deleted"
   flash_cannot_delete: "Cannot delete user!"
   comment_del_confirm: "Are you sure?"
-  flash_warning_user: "You do not have permission to access this action!"
+  flash_warning_user: "You are not authorized to perform this action!"
   flash_match_not_found: "Match not found"
+  unauthorized:
+    manage:
+      all: "Not authorized to %{action} %{subject}."
+      user: "Not allowed to manage other user accounts."
+    update:
+      project: "Not allowed to update this project."
   time:
     formats:
       hour_minute: "%H:%M"
