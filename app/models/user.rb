@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
-    :lockable, :confirmable
+    :lockable, :confirmable, :async
   devise :omniauthable, omniauth_providers: %i(facebook google_oauth2)
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_COIN_REGEX = /\A\d{1,8}(\.\d{0,2})?\z/
