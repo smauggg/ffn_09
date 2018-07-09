@@ -1,0 +1,47 @@
+<% provide :title, t(".header") %>
+<%= stylesheet_link_tag "body-style" %>
+<div class="login-form">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= hidden_field_tag :normal_login, Settings.login_hidden_value %>
+
+    <h2 class="text-center"><%= t ".header" %></h2>
+    <div class="text-center social-btn">
+      <%= link_to login_facebook_path, class: "btn btn-primary btn-block" do %>
+        <i class="fab fa-facebook"></i><%= t ".sign_in_with" %><b> <%= t".facebook" %></b>
+      <% end %>
+      <%= link_to login_google_path, class: "btn btn-danger btn-block" do %>
+        <i class="fab fa-google"></i><%= t(".sign_in_with") %><b> <%= t".google" %></b>
+      <% end %>
+    </div>
+
+    <div class="or-seperator"><i><%= t".or" %></i></div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <%= f.email_field :email, class: "form-control", autofocus: true,
+          autocomplete: "email", placeholder: t(".label_email") %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+        <%= f.password_field :password, class: "form-control",
+          placeholder: t(".label_password") %>
+      </div>
+    </div>
+
+    <%= f.submit t(".btn_login"), class: "btn btn-success btn-block login-btn" %>
+    <% if devise_mapping.rememberable? -%>
+      <div class="field">
+        <span class="input-group-addon">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, class: "text-success" %>
+        </span>
+      </div>
+    <% end -%>
+    <div class="hint-text small"><%= t ".content1" %> <%= link_to t(".register"),
+      signup_path, class: "text-success" %></div>
+    <%= render "devise/shared/links" %>
+  <% end %>
+</div>

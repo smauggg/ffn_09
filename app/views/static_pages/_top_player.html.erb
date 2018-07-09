@@ -1,4 +1,8 @@
 <div class="col-md-4 thumbnail text-center">
-    <%= image_tag player.picture.url if player.picture, class: "img-responsive img-portfolio img-hover" %>
-    <h4><%= player.name %></h4>
+  <% if player.picture? %>
+   <%= image_tag player.picture.url, class: "img-responsive img-portfolio img-hover" if player.picture? %>
+  <% else %>
+    <%= image_tag "no_photo_available.jpg" %>
+  <% end %>
+  <h4><%= player.name %></h4>
 </div>
