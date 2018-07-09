@@ -1,18 +1,15 @@
 class PlayersController < ApplicationController
   before_action :load_all_teams, only: %i(new create)
-  before_action :admin_user, except: :index
   before_action :load_player, only: :destroy
+  load_and_authorize_resource
 
   def index
     @players = Player.alphabet.paginate page: params[:page], per_page: Settings.per_page
   end
 
-  def new
-    @player = Player.new
-  end
+  def new; end
 
   def create
-    @player = Player.new player_params
     if @player.save
       flash[:success] = t ".flash_created_player"
       redirect_to players_path

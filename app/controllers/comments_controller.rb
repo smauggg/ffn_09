@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :logged_in_user, only: %i(create destroy)
   before_action :comment_of_correct_user, :load_var_for_destroy, only: :destroy
   before_action :load_var_for_create, only: :create
+  load_and_authorize_resource
 
   def create
     respond_to do |format|

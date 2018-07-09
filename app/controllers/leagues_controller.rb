@@ -1,8 +1,7 @@
 class LeaguesController < ApplicationController
-  before_action :admin_user, except: %i(show index)
-  before_action :new_league, only: :new
   before_action :load_league, only: %i(show edit update destroy)
   before_action :load_team_list, only: %i(new edit)
+  load_and_authorize_resource
 
   def index
     @leagues = League.all.paginate page: params[:page], per_page: Settings.per_page
@@ -27,7 +26,6 @@ class LeaguesController < ApplicationController
   end
 
   def create
-    @league = League.new league_params
     load_team_to_league @league, params[:add_teams]
     if @league.save
       flash[:success] = t ".league_create_success"
@@ -48,10 +46,6 @@ class LeaguesController < ApplicationController
   end
 
   private
-
-  def new_league
-    @league = League.new
-  end
 
   def load_league
     @league = League.find_by id: params[:id]
