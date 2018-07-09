@@ -1,5 +1,5 @@
 <% provide :title, t(".title") %>
-<% if authorized_admin? current_user %>
+<% if can? :manage, Player %>
   <%= render "admincp/sidebar" %>
   <div class="container">
     <div class="row">

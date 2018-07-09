@@ -61,6 +61,7 @@ GEM
       will_paginate
     builder (3.2.3)
     byebug (10.0.2)
+    cancancan (2.2.0)
     capybara (2.18.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -297,6 +298,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.3.7)
   bootstrap-will_paginate (= 1.0.0)
   byebug
+  cancancan (~> 2.0)
   capybara (~> 2.13)
   carrierwave (= 1.2.2)
   ckeditor!

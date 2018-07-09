@@ -1,11 +1,11 @@
 <% provide :title, t(".title") %>
 <h1 class="page-header"><%= t ".achievements" %></h1>
-<% if authorized_admin? current_user %>
+<% if can? :manage, Achievement %>
   <%= render "admincp/sidebar" %>
 <% end %>
 <div class="container">
   <div class="row">
-    <% if authorized_admin? current_user %>
+    <% if can? :manage, Achievement %>
       <div class="col-sm-9 col-md-9">
     <% end %>
       <div class="well">

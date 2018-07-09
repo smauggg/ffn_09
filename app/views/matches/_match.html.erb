@@ -28,7 +28,7 @@
     <p class = "btn btn-success pull-center"><%= link_to t(".to_match"), match_path(match) %></p>
   </td>
 
-  <% if authorized_admin? current_user %>
+  <% if can? :manage, match %>
     <td><%= link_to t(".update_score"), match, method: :put, class: "btn btn-success pull-right" %></td>
     <td><%= link_to t(".avoid"), match, method: :delete, class: "btn btn-danger pull-right", data: {confirm: t(".affirm_msg")} %></td>
   <% end %>
