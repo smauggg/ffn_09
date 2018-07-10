@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout if logged_in?
-    redirect_to root_url
+    logout if user_signed_in?
+    redirect_to root_path
   end
 
   private
