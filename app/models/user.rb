@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+    :recoverable, :rememberable, :trackable, :validatable
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_COIN_REGEX = /\A\d{1,8}(\.\d{0,2})?\z/
 
@@ -24,8 +28,6 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
 
   enum role: %i(member admin)
-
-  has_secure_password
 
   def self.digest string
     cost = if ActiveModel::SecurePassword.min_cost

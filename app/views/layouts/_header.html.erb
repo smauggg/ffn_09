@@ -29,7 +29,7 @@
           <li><%= link_to t(".admincp"), admincp_show_path %></li>
         <% end %>
       <% else %>
-        <li><%= link_to t(".txt_login"), login_path %></li>
+        <li><%= link_to t(".txt_login"), new_user_session_path %></li>
         <li><%= link_to t(".txt_signup"), signup_path %></li>
       <% end %>
     </ul>

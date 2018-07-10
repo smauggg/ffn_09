@@ -19,6 +19,7 @@ gem "jquery-turbolinks"
 gem "font-awesome-sass", "~> 5.0.13"
 gem "rubocop", "~> 0.49.1", require: false
 gem "will_paginate", "3.1.6"
+gem "devise"
 
 gem "coffee-rails", "~> 4.2"
 gem "jbuilder", "~> 2.5"

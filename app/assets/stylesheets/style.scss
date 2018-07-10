@@ -122,7 +122,7 @@ $very-light-gray: #f1f1f1;
   color: $dark-gray2;
   margin-top: 10px;
   text-align: center;
-  width: 25%;
+  width: 100%;
 
 }
 .form-control, .btn {
@@ -159,6 +159,9 @@ $very-light-gray: #f1f1f1;
 }
 .input-group-addon .fa{
   font-size: 18px;
+}
+.input-group-addon input[type=checkbox] {
+  width: 10px;
 }
 
 .gravatar_edit {
