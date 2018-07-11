@@ -32,7 +32,7 @@
         <li><%= t ".handicap", var: @match.handicap %></li>
         <li><%= t ".final_score", score1: @match.score1, score2: @match.score2 %></li>
       </ul>
-      <% if logged_in? %>
+      <% if user_signed_in? %>
         <p><%= t ".current_power" %><%= current_user.coin %></p>
         <%= form_for @bet, class: "form-group" do |f| %>
           <%= hidden_field_tag :match_id, @match.id %>

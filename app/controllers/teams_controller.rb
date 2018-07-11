@@ -5,6 +5,7 @@ class TeamsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    byebug
     load_countries_by_continent if params[:continent_id]
     load_searched_result if params[:search]
     respond_to do |format|

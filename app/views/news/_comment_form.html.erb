@@ -1,6 +1,6 @@
 <h4><%= t ".leave_a_comment" %></h4>
 <%= form_for @article.comments.build, class: "form-group", remote: true do |f| %>
-  <% if logged_in? %>
+  <% if user_signed_in? %>
     <%= hidden_field_tag :user_id, current_user.id %>
   <% end %>
   <%= hidden_field_tag :article_id, @article.id %>

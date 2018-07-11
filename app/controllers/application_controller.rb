@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   rescue_from CanCan::AccessDenied do
     respond_to do |format|
       format.json{head :forbidden}
@@ -7,6 +9,12 @@ class ApplicationController < ActionController::Base
   end
   protect_from_forgery with: :exception
   include SessionsHelper
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i(name address))
+  end
 
   private
 
@@ -19,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   # Confirms a logged-in user.
   def logged_in_user
-    return if logged_in?
+    return if user_signed_in?
     store_location
     flash[:danger] = t "users.require_loggedin_msg"
     redirect_to login_path

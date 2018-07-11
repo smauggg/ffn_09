@@ -7,7 +7,7 @@ class MatchesController < ApplicationController
 
   def show
     store_location
-    return unless logged_in?
+    return unless user_signed_in?
     @bet = user_bet current_user, @match
     @bet ||= @match.bets.build
   end
